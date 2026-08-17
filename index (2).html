@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ananthavix Solutions — Nithish Kumar | BI, FinTech Ops &amp; HRMS</title>
+<meta name="description" content="Ananthavix Solutions — Business Intelligence, Banking Alliance &amp; FinTech Operations by Nithish Kumar. Live HRMS platform, Power BI dashboards, and banking operations expertise." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#070f1f;
+    --navy-900:#0b1d3a;
+    --navy-800:#122a4d;
+    --navy-700:#1c3a63;
+    --navy-600:#2a4d7d;
+    --cyan-400:#34c3e6;
+    --cyan-300:#7fdcf0;
+    --ink-050:#f4f7fb;
+    --ink-100:#dfe6f0;
+    --slate-400:#8fa0bd;
+    --slate-500:#6d7f9c;
+    --live-green:#3ecf8e;
+    --radius:10px;
+    --max:1180px;
+    --ff-display:"Space Grotesk", ui-sans-serif, sans-serif;
+    --ff-body:"Inter", ui-sans-serif, sans-serif;
+    --ff-mono:"IBM Plex Mono", ui-monospace, monospace;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--navy-950);
+    color:var(--ink-100);
+    font-family:var(--ff-body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+
+  ::selection{background:var(--cyan-400); color:var(--navy-950);}
+
+  :focus-visible{
+    outline:2px solid var(--cyan-400);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+
+  h1,h2,h3{
+    font-family:var(--ff-display);
+    font-weight:600;
+    color:var(--ink-050);
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  .eyebrow{
+    font-family:var(--ff-mono);
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--cyan-400);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;
+    height:1px;
+    background:var(--cyan-400);
+    display:inline-block;
+  }
+
+  /* ---------- ticker ---------- */
+  .ticker{
+    background:var(--navy-950);
+    border-bottom:1px solid var(--navy-700);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:9px 0;
+  }
+  .ticker__track{
+    display:inline-flex;
+    animation:ticker 34s linear infinite;
+  }
+  .ticker__track span{
+    font-family:var(--ff-mono);
+    font-size:12px;
+    color:var(--slate-400);
+    padding:0 22px;
+    border-right:1px solid var(--navy-700);
+    letter-spacing:0.03em;
+  }
+  @keyframes ticker{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ---------- header ---------- */
+  header.site{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background:rgba(7,15,31,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--navy-700);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 0;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+  }
+  .brand img{height:34px; width:auto;}
+  .brand__name{
+    font-family:var(--ff-display);
+    font-weight:600;
+    font-size:16px;
+    color:var(--ink-050);
+    line-height:1.15;
+  }
+  .brand__name small{
+    display:block;
+    font-family:var(--ff-mono);
+    font-weight:400;
+    font-size:10.5px;
+    letter-spacing:0.12em;
+    color:var(--slate-400);
+    text-transform:uppercase;
+    margin-top:2px;
+  }
+  .nav__links{
+    display:flex;
+    gap:32px;
+    list-style:none;
+    margin:0; padding:0;
+  }
+  .nav__links a{
+    text-decoration:none;
+    font-size:14px;
+    color:var(--slate-400);
+    transition:color .15s ease;
+  }
+  .nav__links a:hover{color:var(--ink-050);}
+  .nav__cta{
+    font-family:var(--ff-mono);
+    font-size:13px;
+    color:var(--navy-950);
+    background:var(--cyan-400);
+    padding:9px 16px;
+    border-radius:6px;
+    text-decoration:none;
+    font-weight:500;
+    white-space:nowrap;
+    transition:background .15s ease;
+  }
+  .nav__cta:hover{background:var(--cyan-300);}
+  .nav__mobile-hide{display:flex; align-items:center; gap:28px;}
+
+  @media (max-width:760px){
+    .nav__links{display:none;}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:96px 0 76px;
+    overflow:hidden;
+    border-bottom:1px solid var(--navy-700);
+    background:
+      radial-gradient(ellipse 900px 500px at 82% -10%, rgba(52,195,230,0.14), transparent 60%),
+      var(--navy-950);
+  }
+  .hero__grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:56px;
+    align-items:center;
+  }
+  @media (max-width:900px){
+    .hero__grid{grid-template-columns:1fr; gap:48px;}
+  }
+
+  .hero h1{
+    font-size:clamp(34px, 4.6vw, 54px);
+    line-height:1.06;
+    margin:18px 0 22px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:linear-gradient(100deg, var(--cyan-300), var(--cyan-400) 60%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero p.lede{
+    font-size:17px;
+    color:var(--slate-400);
+    max-width:52ch;
+    margin:0 0 32px;
+  }
+  .hero__ctas{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-bottom:38px;
+  }
+  .btn{
+    font-family:var(--ff-body);
+    font-size:14.5px;
+    font-weight:600;
+    padding:13px 22px;
+    border-radius:7px;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    transition:transform .15s ease, background .15s ease, border-color .15s ease;
+    border:1px solid transparent;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn--primary{background:var(--cyan-400); color:var(--navy-950);}
+  .btn--primary:hover{background:var(--cyan-300);}
+  .btn--ghost{
+    background:transparent;
+    color:var(--ink-050);
+    border-color:var(--navy-600);
+  }
+  .btn--ghost:hover{border-color:var(--cyan-400); color:var(--cyan-300);}
+
+  .statement-strip{
+    display:flex;
+    gap:0;
+    border:1px solid var(--navy-700);
+    border-radius:var(--radius);
+    overflow:hidden;
+    max-width:560px;
+  }
+  .statement-strip div{
+    flex:1;
+    padding:13px 16px;
+    border-right:1px solid var(--navy-700);
+  }
+  .statement-strip div:last-child{border-right:none;}
+  .statement-strip .k{
+    font-family:var(--ff-mono);
+    font-size:10px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--slate-500);
+    margin-bottom:4px;
+  }
+  .statement-strip .v{
+    font-family:var(--ff-mono);
+    font-size:13px;
+    color:var(--ink-100);
+  }
+  .statement-strip .v.live{color:var(--live-green); display:flex; align-items:center; gap:6px;}
+  .dot{width:6px; height:6px; border-radius:50%; background:var(--live-green); display:inline-block;
+    animation:pulse 2s ease-in-out infinite;}
+  @keyframes pulse{0%,100%{opacity:1;} 50%{opacity:0.35;}}
+
+  /* hero bars graphic */
+  .barfield{
+    position:relative;
+    height:340px;
+    display:flex;
+    align-items:flex-end;
+    gap:10px;
+    padding:0 8px 8px;
+    border-bottom:1px solid var(--navy-700);
+  }
+  .barfield .bar{
+    flex:1;
+    background:linear-gradient(180deg, var(--cyan-400), var(--navy-700));
+    border-radius:3px 3px 0 0;
+    opacity:0.85;
+    animation:rise 1.1s cubic-bezier(.2,.8,.2,1) both;
+  }
+  @keyframes rise{
+    from{transform:scaleY(0); transform-origin:bottom;}
+    to{transform:scaleY(1); transform-origin:bottom;}
+  }
+  .barfield .bar:nth-child(1){height:38%; animation-delay:.02s;}
+  .barfield .bar:nth-child(2){height:52%; animation-delay:.08s;}
+  .barfield .bar:nth-child(3){height:44%; animation-delay:.14s;}
+  .barfield .bar:nth-child(4){height:66%; animation-delay:.20s;}
+  .barfield .bar:nth-child(5){height:58%; animation-delay:.26s;}
+  .barfield .bar:nth-child(6){height:78%; animation-delay:.32s;}
+  .barfield .bar:nth-child(7){height:70%; animation-delay:.38s;}
+  .barfield .bar:nth-child(8){height:92%; opacity:1; animation-delay:.44s;}
+  .barfield .bar:nth-child(9){height:82%; animation-delay:.50s;}
+  .barfield .bar:nth-child(10){height:100%; opacity:1; animation-delay:.56s;}
+  .barfield__label{
+    position:absolute; top:14px; left:14px;
+    font-family:var(--ff-mono); font-size:11px; color:var(--slate-500);
+    letter-spacing:0.08em; text-transform:uppercase;
+  }
+  .barfield__wrap{position:relative;}
+
+  /* ---------- section shell ---------- */
+  section{padding:88px 0;}
+  section.alt{background:var(--navy-900); border-top:1px solid var(--navy-700); border-bottom:1px solid var(--navy-700);}
+  .section__head{margin-bottom:44px; max-width:640px;}
+  .section__head h2{font-size:clamp(26px,3vw,34px); margin-top:14px;}
+  .section__head p{color:var(--slate-400); margin-top:12px; font-size:15.5px;}
+
+  /* ---------- about ---------- */
+  .about__grid{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:56px;
+  }
+  @media (max-width:760px){.about__grid{grid-template-columns:1fr; gap:28px;}}
+  .ledger-refs{
+    font-family:var(--ff-mono);
+    font-size:12px;
+    color:var(--slate-500);
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    border-left:1px solid var(--navy-700);
+    padding-left:18px;
+  }
+  .ledger-refs b{display:block; color:var(--cyan-400); font-weight:500; margin-bottom:2px;}
+  .about__body p{font-size:16px; color:var(--ink-100); margin:0 0 18px;}
+  .about__body p:last-child{margin-bottom:0;}
+
+  /* ---------- experience ledger ---------- */
+  .ledger{
+    border:1px solid var(--navy-700);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .ledger__head, .ledger__row{
+    display:grid;
+    grid-template-columns:150px 260px 1fr;
+    gap:20px;
+    padding:18px 22px;
+  }
+  .ledger__head{
+    background:var(--navy-800);
+    font-family:var(--ff-mono);
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--slate-500);
+  }
+  .ledger__row{border-top:1px solid var(--navy-700);}
+  .ledger__row:nth-child(even){background:rgba(255,255,255,0.014);}
+  .ledger__row .date{
+    font-family:var(--ff-mono);
+    font-size:13px;
+    color:var(--cyan-300);
+    white-space:nowrap;
+  }
+  .ledger__row .entity strong{display:block; color:var(--ink-050); font-size:15px; font-weight:600;}
+  .ledger__row .entity span{display:block; font-size:12.5px; color:var(--slate-500); margin-top:3px;}
+  .ledger__row .detail ul{margin:0; padding-left:18px; color:var(--slate-400); font-size:14px;}
+  .ledger__row .detail li{margin-bottom:6px;}
+  .ledger__row .detail li:last-child{margin-bottom:0;}
+  @media (max-width:820px){
+    .ledger__head{display:none;}
+    .ledger__row{grid-template-columns:1fr; gap:8px;}
+  }
+
+  /* ---------- product / hrms ---------- */
+  .product-card{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    border:1px solid var(--navy-700);
+    border-radius:14px;
+    overflow:hidden;
+    background:var(--navy-900);
+  }
+  @media (max-width:860px){.product-card{grid-template-columns:1fr;}}
+  .product-card__visual{
+    background:
+      radial-gradient(ellipse 400px 260px at 30% 0%, rgba(52,195,230,0.16), transparent 65%),
+      var(--navy-950);
+    padding:32px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-right:1px solid var(--navy-700);
+  }
+  @media (max-width:860px){.product-card__visual{border-right:none; border-bottom:1px solid var(--navy-700);}}
+  .browser-mock{
+    width:100%;
+    max-width:400px;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid var(--navy-700);
+    background:var(--navy-800);
+    box-shadow:0 30px 60px -20px rgba(0,0,0,0.6);
+  }
+  .browser-mock__bar{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    padding:9px 12px;
+    background:var(--navy-700);
+  }
+  .browser-mock__bar span{width:8px; height:8px; border-radius:50%; background:var(--navy-600);}
+  .browser-mock__url{
+    margin-left:8px;
+    font-family:var(--ff-mono);
+    font-size:10px;
+    color:var(--slate-400);
+    background:var(--navy-800);
+    padding:3px 10px;
+    border-radius:4px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    flex:1;
+  }
+  .browser-mock__body{padding:18px;}
+  .mock-row{display:flex; gap:10px; margin-bottom:10px;}
+  .mock-tile{
+    background:var(--navy-700);
+    border-radius:6px;
+    height:52px;
+    flex:1;
+  }
+  .mock-tile.tall{height:96px;}
+  .mock-tile.accent{background:linear-gradient(135deg, var(--cyan-400), var(--navy-700));}
+  .mock-bars{display:flex; align-items:flex-end; gap:5px; height:60px; padding:10px 8px 0;}
+  .mock-bars i{flex:1; background:var(--cyan-400); border-radius:2px 2px 0 0; opacity:0.75;}
+
+  .product-card__body{padding:40px;}
+  .live-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    font-family:var(--ff-mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--live-green);
+    border:1px solid rgba(62,207,142,0.35);
+    background:rgba(62,207,142,0.08);
+    padding:5px 11px;
+    border-radius:20px;
+    margin-bottom:18px;
+  }
+  .product-card__body h3{font-size:24px; margin-bottom:12px;}
+  .product-card__body p{color:var(--slate-400); font-size:15px; margin:0 0 22px;}
+  .tag-row{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:26px;}
+  .tag{
+    font-family:var(--ff-mono);
+    font-size:11.5px;
+    color:var(--ink-100);
+    border:1px solid var(--navy-700);
+    padding:5px 10px;
+    border-radius:6px;
+    background:var(--navy-800);
+  }
+  .module-list{
+    list-style:none; margin:0 0 28px; padding:0;
+    display:grid; grid-template-columns:1fr 1fr; gap:9px 18px;
+  }
+  .module-list li{
+    font-size:13.5px;
+    color:var(--ink-100);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .module-list li::before{
+    content:"";
+    width:5px; height:5px;
+    background:var(--cyan-400);
+    border-radius:50%;
+    flex-shrink:0;
+  }
+
+  /* ---------- bi projects grid ---------- */
+  .proj-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:20px;
+  }
+  @media (max-width:900px){.proj-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:620px){.proj-grid{grid-template-columns:1fr;}}
+  .proj-card{
+    border:1px solid var(--navy-700);
+    border-radius:var(--radius);
+    padding:24px;
+    background:var(--navy-900);
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .proj-card:hover{border-color:var(--cyan-400); transform:translateY(-2px);}
+  .proj-card .icon{font-size:22px; margin-bottom:14px; display:block;}
+  .proj-card h3{font-size:16px; margin-bottom:8px; font-weight:600;}
+  .proj-card p{font-size:13.5px; color:var(--slate-400); margin:0 0 14px;}
+  .proj-card .kpis{
+    display:flex; flex-wrap:wrap; gap:6px;
+  }
+  .proj-card .kpis span{
+    font-family:var(--ff-mono);
+    font-size:10.5px;
+    color:var(--cyan-300);
+    border:1px solid var(--navy-700);
+    padding:3px 8px;
+    border-radius:4px;
+  }
+
+  /* ---------- skills ---------- */
+  .skill-groups{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:28px;
+  }
+  @media (max-width:900px){.skill-groups{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.skill-groups{grid-template-columns:1fr;}}
+  .skill-group .eyebrow{margin-bottom:16px;}
+  .skill-group ul{list-style:none; margin:0; padding:0;}
+  .skill-group li{
+    font-size:14px;
+    color:var(--ink-100);
+    padding:8px 0;
+    border-top:1px solid var(--navy-700);
+  }
+  .skill-group li:first-of-type{border-top:none;}
+
+  /* ---------- contact / footer ---------- */
+  footer{
+    padding:88px 0 40px;
+    background:var(--navy-950);
+  }
+  .contact-panel{
+    border:1px solid var(--navy-700);
+    border-radius:16px;
+    padding:56px;
+    background:radial-gradient(ellipse 700px 300px at 20% 0%, rgba(52,195,230,0.1), transparent 65%);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:40px;
+    flex-wrap:wrap;
+  }
+  .contact-panel h2{font-size:clamp(26px,3.4vw,38px); max-width:16ch;}
+  .contact-panel p{color:var(--slate-400); margin-top:14px; max-width:44ch;}
+  .contact-links{display:flex; flex-direction:column; gap:10px; font-family:var(--ff-mono); font-size:13.5px;}
+  .contact-links a{text-decoration:none; color:var(--ink-100); transition:color .15s ease;}
+  .contact-links a:hover{color:var(--cyan-300);}
+  .foot-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:44px;
+    padding-top:24px;
+    border-top:1px solid var(--navy-700);
+    font-family:var(--ff-mono);
+    font-size:12px;
+    color:var(--slate-500);
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  @media (max-width:620px){
+    section{padding:64px 0;}
+    .contact-panel{padding:32px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    <span>POWER BI</span><span>DAX &amp; POWER QUERY</span><span>BANKING ALLIANCE OPS</span><span>MERCHANT ONBOARDING</span><span>KYC / AML</span><span>SETTLEMENT &amp; RECONCILIATION</span><span>IPO · RIGHTS ISSUE · BUYBACK</span><span>MIS REPORTING</span><span>PAYMENT GATEWAY OPS</span><span>ADVANCED EXCEL / VBA</span>
+    <span>POWER BI</span><span>DAX &amp; POWER QUERY</span><span>BANKING ALLIANCE OPS</span><span>MERCHANT ONBOARDING</span><span>KYC / AML</span><span>SETTLEMENT &amp; RECONCILIATION</span><span>IPO · RIGHTS ISSUE · BUYBACK</span><span>MIS REPORTING</span><span>PAYMENT GATEWAY OPS</span><span>ADVANCED EXCEL / VBA</span>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap nav">
+    <a href="#top" class="brand">
+      <img src="data:image/webp;base64,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" alt="Ananthavix Solutions logo" />
+      <span class="brand__name">Ananthavix Solutions<small>BI &amp; Banking Ops</small></span>
+    </a>
+    <div class="nav__mobile-hide">
+      <ul class="nav__links">
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#hrms">HRMS Platform</a></li>
+        <li><a href="#projects">BI Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+      </ul>
+      <a class="nav__cta" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <div class="eyebrow">Statement of Work — Ananthavix Solutions</div>
+        <h1>Banking operations,<br>turned into <em>board-ready intelligence.</em></h1>
+        <p class="lede">I'm Nithish Kumar — a Banking Alliance &amp; FinTech Operations professional who builds the Power BI dashboards, MIS systems, and internal platforms that operations teams actually run on.</p>
+        <div class="hero__ctas">
+          <a class="btn btn--primary" href="https://banking-allaince-hrms.vercel.app/payroll" target="_blank" rel="noopener">View the HRMS Platform →</a>
+          <a class="btn btn--ghost" href="#contact">Get in touch</a>
+        </div>
+        <div class="statement-strip">
+          <div><div class="k">Based in</div><div class="v">Dubai, UAE</div></div>
+          <div><div class="k">Role</div><div class="v">Sr. Banking Alliance Exec.</div></div>
+          <div><div class="k">Status</div><div class="v live"><span class="dot"></span>Available</div></div>
+        </div>
+      </div>
+      <div class="barfield__wrap">
+        <div class="barfield">
+          <div class="barfield__label">FY25–26 · Ops Throughput</div>
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap about__grid">
+      <div class="ledger-refs">
+        <div><b>Entity</b>Ananthavix Solutions</div>
+        <div><b>Principal</b>Nithish Kumar</div>
+        <div><b>Domain</b>BI · Banking · FinTech</div>
+        <div><b>Location</b>Dubai, UAE</div>
+        <div><b>Certified</b>Investment Banking Prof.</div>
+      </div>
+      <div class="about__body">
+        <div class="eyebrow">About</div>
+        <h2 style="margin:14px 0 22px; font-size:clamp(24px,3vw,30px);">Where operations knowledge meets analytical build.</h2>
+        <p>I work across banking alliances, merchant onboarding, payment gateway operations, KYC/AML documentation, investment operations, settlement and reconciliation — the parts of a financial business that don't show up in a pitch deck, but decide whether it actually runs.</p>
+        <p>Ananthavix Solutions is where that operational depth turns into something you can use directly: Power BI dashboards that replace manual MIS, VBA automation that removes recurring reporting effort, and full internal platforms — like the HRMS system below — built and shipped end to end.</p>
+        <p>Prior experience spans IPO, Rights Issue, Buyback and Corporate Actions processing within a Registrar &amp; Transfer Agent environment, plus KYC verification and repository operations — a foundation in exactly the kind of high-volume, accuracy-critical process work that good dashboards are built to monitor.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="alt">
+    <div class="wrap">
+      <div class="section__head">
+        <div class="eyebrow">Transaction History</div>
+        <h2>Professional experience</h2>
+        <p>Three roles, one throughline: operations accuracy, then the reporting and tooling to see it clearly.</p>
+      </div>
+      <div class="ledger">
+        <div class="ledger__head">
+          <div>Period</div><div>Entity / Role</div><div>Scope</div>
+        </div>
+        <div class="ledger__row">
+          <div class="date">Oct 2025 — Present</div>
+          <div class="entity"><strong>Primasoft Technology EST</strong><span>Senior Banking Alliance Executive · Dubai, UAE</span></div>
+          <div class="detail">
+            <ul>
+              <li>Manage strategic relationships with banking partners, PSPs, TSPs and merchants, from onboarding through go-live</li>
+              <li>Lead merchant onboarding — KYC documentation, corporate records, compliance review</li>
+              <li>Build Power BI dashboards and Excel/VBA MIS reports, automating recurring reporting</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ledger__row">
+          <div class="date">Oct 2023 — Aug 2025</div>
+          <div class="entity"><strong>Cameo Corporate Services Ltd</strong><span>Senior Assistant / Executive — Registry &amp; RTA · Chennai, India</span></div>
+          <div class="detail">
+            <ul>
+              <li>Supported IPO, Rights Issue, Buyback, Listing and Corporate Action processing</li>
+              <li>Executed settlement and reconciliation on high-volume investor transactions</li>
+              <li>Built MIS reports and operational summaries for exception tracking and decision-making</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ledger__row">
+          <div class="date">Apr 2022 — Sep 2023</div>
+          <div class="entity"><strong>Computer Age Management Services Ltd</strong><span>Executive — Operations (Repository) · Chennai, India</span></div>
+          <div class="detail">
+            <ul>
+              <li>Ran KYC checks, customer record updates, bank-detail and penny-drop verification</li>
+              <li>Maintained MIS, campaign reports and operational dashboards</li>
+              <li>Led day-to-day team coordination and quality checks</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HRMS PRODUCT -->
+  <section id="hrms">
+    <div class="wrap">
+      <div class="section__head">
+        <div class="eyebrow">Shipped Product</div>
+        <h2>Banking Alliance HRMS</h2>
+        <p>An internal HR platform built for a banking alliance team — from Supabase-backed auth to a live production deployment.</p>
+      </div>
+      <div class="product-card">
+        <div class="product-card__visual">
+          <div class="browser-mock">
+            <div class="browser-mock__bar">
+              <span></span><span></span><span></span>
+              <div class="browser-mock__url">banking-allaince-hrms.vercel.app/payroll</div>
+            </div>
+            <div class="browser-mock__body">
+              <div class="mock-row">
+                <div class="mock-tile accent"></div>
+                <div class="mock-tile"></div>
+              </div>
+              <div class="mock-row">
+                <div class="mock-tile tall"></div>
+                <div class="mock-tile tall">
+                  <div class="mock-bars">
+                    <i style="height:40%"></i><i style="height:65%"></i><i style="height:50%"></i><i style="height:85%"></i><i style="height:60%"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="product-card__body">
+          <div class="live-badge"><span class="dot"></span>Live in production</div>
+          <h3>Payroll, leave, and team ops — in one platform</h3>
+          <p>Built end to end for a real banking alliance team: authentication and role-based access via Supabase, a payroll and payslip module, leave and permission tracking, work updates with manager approval, and an org chart — deployed on Vercel with CI from GitHub.</p>
+          <ul class="module-list">
+            <li>Payroll &amp; payslips</li>
+            <li>Leave &amp; permissions</li>
+            <li>Work update approvals</li>
+            <li>Team &amp; org chart</li>
+            <li>Role-based admin</li>
+            <li>Reimbursement claims</li>
+          </ul>
+          <div class="tag-row">
+            <span class="tag">React + TypeScript</span>
+            <span class="tag">Vite</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">Vercel</span>
+          </div>
+          <a class="btn btn--primary" href="https://banking-allaince-hrms.vercel.app/payroll" target="_blank" rel="noopener">Open the live app →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BI PROJECTS -->
+  <section id="projects" class="alt">
+    <div class="wrap">
+      <div class="section__head">
+        <div class="eyebrow">Portfolio</div>
+        <h2>Business intelligence projects</h2>
+        <p>Dashboards built in Power BI with DAX, Power Query and structured data models — full portfolio on GitHub.</p>
+      </div>
+      <div class="proj-grid">
+        <div class="proj-card">
+          <span class="icon">🛒</span>
+          <h3>E-Commerce Analytics Dashboard</h3>
+          <p>Star-schema dashboard tracking regional sales, profitability, customers and order fulfilment.</p>
+          <div class="kpis"><span>Total Sales</span><span>Profit Margin</span><span>YoY Growth</span></div>
+        </div>
+        <div class="proj-card">
+          <span class="icon">🏭</span>
+          <h3>Manufacturing Operations Dashboard</h3>
+          <p>Four-page executive view covering production, quality and inventory/cost analytics.</p>
+          <div class="kpis"><span>OEE</span><span>Defect Rate</span><span>Regional Perf.</span></div>
+        </div>
+        <div class="proj-card">
+          <span class="icon">💰</span>
+          <h3>Corporate Finance &amp; Budget Intelligence</h3>
+          <p>Finance dashboard linking Date, Department, Manager and Region data models.</p>
+          <div class="kpis"><span>Revenue</span><span>ROI</span><span>Budget Variance</span></div>
+        </div>
+        <div class="proj-card">
+          <span class="icon">🛍️</span>
+          <h3>Retail Sales Analytics Dashboard</h3>
+          <p>Sales performance and trend analysis across channels and time periods.</p>
+          <div class="kpis"><span>Power BI</span><span>DAX</span></div>
+        </div>
+        <div class="proj-card">
+          <span class="icon">🏥</span>
+          <h3>Hospital Analytics Dashboard</h3>
+          <p>Healthcare operations and performance monitoring dashboard.</p>
+          <div class="kpis"><span>Power BI</span><span>DAX</span></div>
+        </div>
+        <div class="proj-card">
+          <span class="icon">🚚</span>
+          <h3>Supply Chain Analytics Dashboard</h3>
+          <p>Supply chain performance and logistics visibility dashboard.</p>
+          <div class="kpis"><span>Power BI</span><span>DAX</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="section__head">
+        <div class="eyebrow">Capabilities</div>
+        <h2>Core skills</h2>
+      </div>
+      <div class="skill-groups">
+        <div class="skill-group">
+          <div class="eyebrow">BI &amp; Analytics</div>
+          <ul>
+            <li>Power BI &amp; DAX</li>
+            <li>Power Query</li>
+            <li>Data modeling</li>
+            <li>KPI / MIS reporting</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <div class="eyebrow">Banking &amp; FinTech</div>
+          <ul>
+            <li>Merchant onboarding</li>
+            <li>Payment gateway ops</li>
+            <li>Banking alliances</li>
+            <li>Settlement &amp; reconciliation</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <div class="eyebrow">KYC, AML &amp; Compliance</div>
+          <ul>
+            <li>KYC / eKYC verification</li>
+            <li>AML documentation</li>
+            <li>Bank detail verification</li>
+            <li>Repository operations</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <div class="eyebrow">Technical Tools</div>
+          <ul>
+            <li>Advanced Excel / VBA</li>
+            <li>React + TypeScript</li>
+            <li>Supabase</li>
+            <li>Vercel deployment</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <footer id="contact">
+    <div class="wrap">
+      <div class="contact-panel">
+        <div>
+          <h2>Let's talk about your next dashboard or platform.</h2>
+          <p>Open to opportunities in Data Analytics, Power BI, Business Intelligence, and Banking &amp; FinTech Operations.</p>
+        </div>
+        <div class="contact-links">
+          <a href="tel:+971541643097">+971 54 164 3097</a>
+          <a href="https://github.com/nithishibops" target="_blank" rel="noopener">github.com/nithishibops</a>
+          <span style="color:var(--slate-500)">Dubai, UAE</span>
+        </div>
+      </div>
+      <div class="wrap" style="padding:0;">
+        <div class="foot-bottom">
+          <span>© 2026 Ananthavix Solutions — Nithish Kumar</span>
+          <span>Built with data, driven by insight.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+</body>
+</html>
